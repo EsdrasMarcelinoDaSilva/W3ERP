@@ -616,8 +616,8 @@ export const Filter = styled.div`
   width: 10em;
   display: flex;
   position: fixed;
-  top: -24%;
-  left: 37%;
+  top: 6%;
+  left: 48%;
   gap: 0.5em;
   border-radius: 0.5em;
   flex-direction: column;
