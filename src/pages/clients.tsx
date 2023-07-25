@@ -10,8 +10,7 @@ import {
   GetPredictionEndingProps,
   GetPreditionEnding,
   GetPreditionHistoric,
-  GetPreditionHistoricProps,
-  Product
+  GetPreditionHistoricProps
 } from '@/services/getAllRequest'
 import { LuHistory } from 'react-icons/lu'
 import { RiShoppingBasketLine } from 'react-icons/ri'
@@ -113,11 +112,7 @@ export default function Clients() {
       }
     }
   )
-  // const client = data?.content.find(client => client.id === parseInt(id!))
-  // console.log(parseInt(id!))
-  // console.log(id)
-  // console.log(data)
-  // console.log(client)
+
   return (
     <C.Grid>
       <SideBar />
@@ -153,7 +148,7 @@ export default function Clients() {
             showQuantityColumn={true}
             showPercentColumn={false}
             showLastPurchase={true}
-            showScrollbar={true}
+            showDarBaixaColumn={true}
           />
           <ProductTableMain
             filteredProducts={endingProducts}
@@ -169,6 +164,7 @@ export default function Clients() {
             showPercentColumn={false}
             showLastPurchase={true}
             showNextPurchase={true}
+            showDarBaixaColumn={true}
           />
         </C.Main>
       </C.CenterGrid>

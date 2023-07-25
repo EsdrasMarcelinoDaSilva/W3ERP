@@ -69,7 +69,7 @@ export default function Products() {
                     setSelectedOption(selectedOption === 'all' ? '' : 'all')
                   }
                 />
-                Todos
+                <C.Strong>Todos</C.Strong>
               </C.LabelCheck>
               <C.LabelCheck>
                 <C.InputCheck

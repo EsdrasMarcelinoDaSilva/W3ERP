@@ -2,6 +2,7 @@ import * as C from '../../../assets/styles/global-styles'
 import { RiArrowRightSLine } from 'react-icons/ri'
 import { TableBodyProps } from '@/types/TableBodyProps'
 import { useNavigate } from 'react-router-dom'
+import { BsCheckCircle } from 'react-icons/bs'
 
 const TableBody: React.FC<
   TableBodyProps & {
@@ -12,6 +13,7 @@ const TableBody: React.FC<
     showArrowIcon?: boolean
     showLastPurchase?: boolean
     showNextPurchase?: boolean
+    showDarBaixaColumn?: boolean
   }
 > = ({
   data,
@@ -24,7 +26,8 @@ const TableBody: React.FC<
   isProductTable = false,
   showPercentColumn,
   showLastPurchase,
-  showNextPurchase
+  showNextPurchase,
+  showDarBaixaColumn
 }) => {
   const navigate = useNavigate()
 
@@ -86,6 +89,13 @@ const TableBody: React.FC<
                 onClick={() => handleArrowClick(row.id, isProductTable)}
               >
                 <RiArrowRightSLine />
+              </C.StyledTd>
+            )}
+            {showDarBaixaColumn && (
+              <C.StyledTd className="writeOff" addPadding={addPadding}>
+                <C.SpanCheckCircle>
+                  <BsCheckCircle color="#004CE8" />
+                </C.SpanCheckCircle>
               </C.StyledTd>
             )}
           </C.Trow>

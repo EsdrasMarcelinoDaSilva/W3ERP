@@ -420,7 +420,7 @@ export const Circle = styled.circle<CircleProps>`
 export const SpanPercent = styled.span`
   position: absolute;
   top: 16px;
-  left: 8px;
+  left: 9px;
   font-size: small;
 `
 export const PGraphic = styled.span`
@@ -451,8 +451,8 @@ export const Main = styled.main`
 export const MainCenter = styled.div`
   z-index: 9999;
   border-radius: 1.5em;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
-  margin: 0 16px;
+  box-shadow: 0 0.125em 0.25em rgba(0, 0, 0, 0.7);
+  margin: 0 1em;
   width: 100%;
   padding: 0 1em 0.5em 1em;
 `
@@ -504,7 +504,7 @@ export const Table = styled.table`
 `
 export const Thead = styled.thead`
   .padded {
-    padding-left: 18px;
+    padding-left: 1.125em;
   }
 `
 export const Tbody = styled.tbody`
@@ -613,15 +613,15 @@ export const IconWrap = styled.div`
 `
 export const Filter = styled.div`
   z-index: 4;
-  width: 160px;
+  width: 10em;
   display: flex;
-  position: absolute;
+  position: fixed;
   top: -24%;
   left: 37%;
   gap: 0.5em;
   border-radius: 0.5em;
   flex-direction: column;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 0.625em rgba(0, 0, 0, 0.4);
   padding: 0.7em;
 `
 export const FilterBy = styled.p``
@@ -644,7 +644,7 @@ export const MainCards = styled.main`
   flex-wrap: wrap;
   padding: 0.7em;
   width: 97%;
-  height: 550px;
+  height: 34.375em;
   margin-left: 0.5em;
   overflow-y: scroll;
   &::-webkit-scrollbar {
@@ -653,7 +653,7 @@ export const MainCards = styled.main`
 
   &::-webkit-scrollbar-thumb {
     background-color: gray;
-    border-radius: 8px;
+    border-radius: 0.5em;
     padding-top: 0.2em;
   }
 
@@ -692,7 +692,7 @@ export const FieldTitleCard = styled.div`
 `
 export const HeadingFour = styled.h4`
   font-family: 'Poppins', sans-serif;
-  font-size: 15px;
+  font-size: 0.9375em;
   color: #212121;
 `
 export const StatusDiv = styled.div`
@@ -732,7 +732,7 @@ export const Td = styled.td`
   font-family: 'Poppins', sans-serif;
   margin-bottom: 0.5em;
   color: #424242;
-  font-size: 14px;
+  font-size: 0.875em;
 `
 //------------product------------
 export const StyledTd = styled(Tdata)<{
@@ -740,16 +740,20 @@ export const StyledTd = styled(Tdata)<{
   padding?: string
 }>`
   padding: ${props => (props.addPadding ? props.padding || '.9em' : '0')};
-  font-size: 14px;
+  font-size: 0.875em;
   font-family: 'Poppins', sans-serif;
 `
 export const StyledStatusTd = styled(Tdata)<{ status: string }>`
-  padding: 10px;
+  padding: 0.625em;
   background-color: ${props => (props.status === 'Alta' ? 'green' : 'red')};
 `
 export const SpanSt = styled.span`
   padding: 0.4em 0.6em 0.4em 0.6em;
   border-radius: 0.5em;
+`
+export const SpanCheckCircle = styled.span`
+  display: flex;
+  justify-content: center;
 `
 //-------------------------------------------------------------------
 
@@ -798,28 +802,5 @@ export const Anchor = styled.div`
     font-family: 'Sora', sans-serif;
     font-size: small;
     color: #212121;
-  }
-`
-//------------------Spinner---------------------------------------
-
-export const Div = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(255, 255, 255, 0.1);
-  height: 100vh;
-`
-export const DivSpinner = styled.div`
-  width: 3rem;
-  height: 3rem;
-  border: 2px solid;
-  border-image: linear-gradient(to right, red, green, blue);
-  /* border-top-color: transparent; */
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-  @keyframes spin {
-    to {
-      transform: rotate(360deg);
-    }
   }
 `

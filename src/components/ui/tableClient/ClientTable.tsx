@@ -46,6 +46,7 @@ export default function ClientTable({
             productClassName="product"
             showStatusColumn={false}
             showArrowIcon={false}
+            showPercentColumn={true}
             showQuantityColumn={true}
             columns={[]}
           />
@@ -72,6 +73,7 @@ export default function ClientTable({
             productClassName="customers"
             showStatusColumn={false}
             showArrowIcon={false}
+            showPercentColumn={true}
             showQuantityColumn={true}
             columns={[]}
           />

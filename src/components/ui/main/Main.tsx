@@ -47,13 +47,6 @@ export default function Main({ id, subPageProduct, subPageClient }: IdProps) {
     dataEmBaixa: GetClientProductProps | null
   }>({ dataEmAlta: null, dataEmBaixa: null })
 
-  const clientData = clientProductData.dataEmBaixa?.map(client => ({
-    id: client.id,
-    nome: client.nome,
-    percentual: client.percentual,
-    quantidade: client.quantidade
-  }))
-
   useEffect(() => {
     const fetchData = async () => {
       try {

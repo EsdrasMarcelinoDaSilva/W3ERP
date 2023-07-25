@@ -1,4 +1,3 @@
-import { RiShoppingBasketLine } from 'react-icons/ri'
 import * as C from '../../../assets/styles/global-styles'
 import TableTitle from '../tableTitle/TableTitle'
 import TableHeader from '../tableHead/TableHeader'
@@ -23,7 +22,7 @@ type ProductTableMainProps = {
   showQuantityColumn?: boolean
   showLastPurchase?: boolean
   showNextPurchase?: boolean
-  showScrollbar?: boolean
+  showDarBaixaColumn?: boolean
 }
 
 export default function ProductTableMain({
@@ -38,18 +37,8 @@ export default function ProductTableMain({
   showPercentColumn,
   showArrowIcon,
   showQuantityColumn,
-  showScrollbar = false
+  showDarBaixaColumn
 }: ProductTableMainProps) {
-  const data = filteredProducts.map(product => ({
-    nextPurchase: product.nextPurchase,
-    lastPurchase: product.lastPurchase,
-    classificacao: product.classificacao,
-    quantidade: product.quantidade,
-    id: product.id,
-    nome: product.nome,
-    percentual: product.percentual
-  }))
-
   return (
     <C.MainCenter>
       <C.FieldTableTitle>
@@ -67,12 +56,7 @@ export default function ProductTableMain({
           showButtons={showButtons}
         />
       </C.FieldTableTitle>
-      <C.Table
-        style={{
-          overflowY: showScrollbar ? 'auto' : undefined,
-          maxHeight: '100px'
-        }}
-      >
+      <C.Table>
         <TableHeader columns={productColumns} />
         <TableBody
           data={filteredProducts}
@@ -85,6 +69,7 @@ export default function ProductTableMain({
           showPercentColumn={showPercentColumn}
           showLastPurchase={true}
           showNextPurchase={true}
+          showDarBaixaColumn={showDarBaixaColumn}
         />
       </C.Table>
     </C.MainCenter>
