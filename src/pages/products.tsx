@@ -9,10 +9,13 @@ import { useEffect, useState } from 'react'
 import { GetProductPage } from '@/services/getAllRequest'
 import { GetProductProps } from '@/types/GetProductProps'
 import { RiArrowLeftSLine, RiArrowRightSLine } from 'react-icons/ri'
+import { LuFilter } from 'react-icons/lu'
 
 const columns = ['ID', 'Produto', 'Status', 'Percentual']
 
 export default function Products() {
+  const [showDiv, setShowDiv] = useState(false)
+  const [selectedOption, setSelectedOption] = useState('')
   const [products, setProducts] = useState<GetProductProps['content']>([])
   const [totalPages, setTotalPages] = useState(0)
   const [page, setPage] = useState(1)
@@ -49,6 +52,48 @@ export default function Products() {
         <C.TextTitle>Produtos</C.TextTitle>
         <C.FieldSearch>
           <SearchInput icon={<CiSearch size={20} />} />
+          <C.SpanFiltered onClick={() => setShowDiv(!showDiv)}>
+            <LuFilter />
+          </C.SpanFiltered>
+          {showDiv && (
+            <C.Filter>
+              <C.FilterBy>
+                <C.Strong>Filtar por:</C.Strong>
+              </C.FilterBy>
+              <hr />
+              <C.LabelCheck>
+                <C.InputCheck
+                  type="checkbox"
+                  checked={selectedOption === 'all'}
+                  onChange={() =>
+                    setSelectedOption(selectedOption === 'all' ? '' : 'all')
+                  }
+                />
+                Todos
+              </C.LabelCheck>
+              <C.LabelCheck>
+                <C.InputCheck
+                  type="checkbox"
+                  checked={selectedOption === 'up'}
+                  onChange={() =>
+                    setSelectedOption(selectedOption === 'up' ? '' : 'up')
+                  }
+                />
+                Em alta
+              </C.LabelCheck>
+              <C.LabelCheck>
+                <C.InputCheck
+                  type="checkbox"
+                  checked={selectedOption === 'down'}
+                  onChange={() =>
+                    setSelectedOption(selectedOption === 'down' ? '' : 'down')
+                  }
+                />
+                Em baixa
+              </C.LabelCheck>
+              <C.ButtonCheck>Aplicar</C.ButtonCheck>
+            </C.Filter>
+          )}
           <C.Table>
             <TableHeader columns={columns} />
             <TableBody

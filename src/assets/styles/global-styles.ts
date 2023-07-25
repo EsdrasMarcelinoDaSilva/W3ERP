@@ -291,7 +291,15 @@ export const SpanInfo = styled.span`
   font-family: 'Poppins', sans-serif;
   padding: 0.3em;
 `
-
+export const SpanFiltered = styled.span`
+  display: flex;
+  position: absolute;
+  border-radius: 0.5em;
+  background-color: #f5f5f5;
+  padding: 0.7em;
+  top: 3.5%;
+  left: 32%;
+`
 //----------------graphics-----------------//
 export const FieldGraphic = styled.section`
   font-family: 'Sora', sans-serif;
@@ -568,6 +576,7 @@ export const ButtonTable = styled.button`
 `
 //------------predictions------------
 export const FieldSearch = styled.section`
+  position: relative;
   padding: 0.7em;
   width: 96%;
   margin-left: 1.25em;
@@ -602,7 +611,32 @@ export const IconWrap = styled.div`
   top: 48%;
   transform: translateY(-50%);
 `
-
+export const Filter = styled.div`
+  z-index: 4;
+  width: 160px;
+  display: flex;
+  position: absolute;
+  top: -24%;
+  left: 37%;
+  gap: 0.5em;
+  border-radius: 0.5em;
+  flex-direction: column;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
+  padding: 0.7em;
+`
+export const FilterBy = styled.p``
+export const Strong = styled.strong``
+export const LabelCheck = styled.label``
+export const InputCheck = styled.input`
+  margin-right: 0.5em;
+`
+export const ButtonCheck = styled.button`
+  background-color: #001c98;
+  border: none;
+  border-radius: 0.5em;
+  padding: 0.5em;
+  color: #fff;
+`
 //----------------card client--------------------
 export const MainCards = styled.main`
   display: flex;
