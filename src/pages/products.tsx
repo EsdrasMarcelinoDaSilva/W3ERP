@@ -20,16 +20,21 @@ export default function Products() {
   const [totalPages, setTotalPages] = useState(0)
   const [page, setPage] = useState(1)
   const [startPage, setStartPage] = useState(1)
+  const [tableData, setTableData] = useState(products)
+  const [searchValue, setSearchValue] = useState('')
 
   useEffect(() => {
     async function fetchData() {
       const data = await GetProductPage(page)
-      console.log(data)
       setProducts(data.content)
       setTotalPages(data.totalPages)
     }
     fetchData()
   }, [page])
+
+  useEffect(() => {
+    setTableData(products)
+  }, [products])
 
   const handlePrevClick = () => {
     setPage(page => Math.max(page - 1, 1))
@@ -44,6 +49,32 @@ export default function Products() {
     }
   }
 
+  const filteredProducts = products
+    .filter(product => {
+      if (selectedOption.length === 0 || selectedOption.includes('all')) {
+        return true
+      } else if (
+        selectedOption.includes('up') &&
+        product.classificacao === 'EM_ALTA'
+      ) {
+        return true
+      } else if (
+        selectedOption.includes('down') &&
+        product.classificacao === 'EM_BAIXA'
+      ) {
+        return true
+      } else {
+        return false
+      }
+    })
+    .filter(product =>
+      product.nome.toLowerCase().startsWith(searchValue.toLowerCase())
+    )
+  const handleApplyFilter = () => {
+    setTableData(filteredProducts)
+    console.log(tableData)
+  }
+
   return (
     <C.Grid>
       <SideBar />
@@ -51,7 +82,10 @@ export default function Products() {
         <Header />
         <C.TextTitle>Produtos</C.TextTitle>
         <C.FieldSearch>
-          <SearchInput icon={<CiSearch size={20} />} />
+          <SearchInput
+            icon={<CiSearch size={20} />}
+            onChange={event => setSearchValue(event.target.value)}
+          />
           <C.SpanFiltered onClick={() => setShowDiv(!showDiv)}>
             <LuFilter />
           </C.SpanFiltered>
@@ -91,13 +125,13 @@ export default function Products() {
                 />
                 Em baixa
               </C.LabelCheck>
-              <C.ButtonCheck>Aplicar</C.ButtonCheck>
+              <C.ButtonCheck onClick={handleApplyFilter}>Aplicar</C.ButtonCheck>
             </C.Filter>
           )}
           <C.Table>
             <TableHeader columns={columns} />
             <TableBody
-              data={products}
+              data={tableData}
               productClassName="product"
               showStatusColumn={true}
               showPercentColumn={true}

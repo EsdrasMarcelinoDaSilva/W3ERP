@@ -4,7 +4,6 @@ import TableBody from '../tableBody/TableBody'
 import TableHeader from '../tableHead/TableHeader'
 import TableTitle from '../tableTitle/TableTitle'
 import { GetProductClientProps } from '@/types/GetProductClientProps'
-import { RiTreasureMapLine } from 'react-icons/ri'
 
 type SetClassificationFn = (
   classification: 'EM_ALTA' | 'EM_BAIXA' | null
