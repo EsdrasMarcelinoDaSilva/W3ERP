@@ -1,17 +1,5 @@
+import { ExtendedGraphicProps } from '@/types/ExtendedGraphicProps'
 import * as C from '../../../assets/styles/global-styles'
-import { GraphicProps } from '@/types/GraphicProps'
-
-interface ExtendedGraphicProps extends GraphicProps {
-  showChange?: boolean
-  hideCircle?: boolean
-  boxShadow?: string
-  backgroundColor?: string
-  numberColor?: string
-  titleColor?: string
-  marginTop?: string
-  borderStyle?: React.CSSProperties
-  borderPercent?: number | undefined
-}
 
 const Graphic: React.FC<ExtendedGraphicProps> = ({
   percent,

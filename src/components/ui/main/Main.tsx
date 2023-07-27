@@ -1,11 +1,9 @@
 import * as C from '../../../assets/styles/global-styles'
 import {
-  Client,
   GetClientProduct,
   GetClients,
   GetProductClient,
-  GetProducts,
-  Product
+  GetProducts
 } from '@/services/getAllRequest'
 import { useEffect, useState } from 'react'
 import { GetProductClientProps } from '@/types/GetProductClientProps'
@@ -16,6 +14,8 @@ import { IdProps } from '@/types/IdProps'
 import ProductTableMain from '../productTableMain/ProductTableMain'
 import ClientTableMain from '../clientTableMain/ClientTableMain'
 import { RiShoppingBasketLine } from 'react-icons/ri'
+import { Product } from '@/types/GetProductsResponse'
+import { Client } from '@/types/GetClientResponse'
 
 export default function Main({ id, subPageProduct, subPageClient }: IdProps) {
   const customerColumns =

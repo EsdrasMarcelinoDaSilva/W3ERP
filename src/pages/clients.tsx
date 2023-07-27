@@ -2,20 +2,20 @@ import SideBar from '@/components/ui/sidebar/Sidebar'
 import * as C from '../assets/styles/global-styles'
 import Header from '@/components/ui/header/Header'
 import { BsFillArrowLeftCircleFill } from 'react-icons/bs'
-import { Link, useLocation, useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import FieldGraphic from '@/components/ui/fieldGraphic/FieldGraphic'
 import ProductTableMain from '@/components/ui/productTableMain/ProductTableMain'
 import {
   GetPredictionDataClient,
-  GetPredictionEndingProps,
   GetPreditionEnding,
-  GetPreditionHistoric,
-  GetPreditionHistoricProps
+  GetPreditionHistoric
 } from '@/services/getAllRequest'
 import { LuHistory } from 'react-icons/lu'
 import { RiShoppingBasketLine } from 'react-icons/ri'
 import { useEffect, useState } from 'react'
 import { GetPredictionDataClientProps } from '@/types/GetPredictionDataClientProps'
+import { GetPredictionEndingProps } from '@/types/GetPredictionEndingProps'
+import { GetPreditionHistoricProps } from '@/types/GetPreditionHistoricProps'
 
 export default function Clients() {
   const { id } = useParams()
@@ -25,17 +25,13 @@ export default function Clients() {
     null
   )
 
-  useEffect(() => {
-    console.log(data)
-  }, [data])
+  useEffect(() => {}, [data])
 
   useEffect(() => {
     async function fetchData() {
       try {
         const response = await GetPredictionDataClient(id!)
-        console.log(response)
         setData(response)
-        console.log(data)
       } catch (error) {
         console.error(error)
       }
@@ -46,10 +42,8 @@ export default function Clients() {
   useEffect(() => {
     async function fetchData() {
       try {
-        console.log(id)
         const result = await GetPreditionEnding(id!)
         setEnding(result)
-        console.log(result)
       } catch (error) {
         console.error(error)
       }
@@ -62,7 +56,6 @@ export default function Clients() {
       try {
         const result = await GetPreditionHistoric(id!)
         setHistoric(result)
-        console.log(result)
       } catch (error) {
         console.error(error)
       }
@@ -134,6 +127,7 @@ export default function Clients() {
           showContactInfo={true}
           titleMarginTop="1em"
           height="6.75em"
+          showFilter={false}
         />
         <C.Main>
           <ProductTableMain

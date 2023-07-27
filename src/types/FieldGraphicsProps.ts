@@ -12,4 +12,5 @@ export type FieldGraphicsProps = {
   showContactInfo?: boolean
   titleMarginTop?: string
   height?: string
+  showFilter?: boolean
 }

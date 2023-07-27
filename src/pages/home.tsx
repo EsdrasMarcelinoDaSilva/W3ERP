@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom'
 
 export default function Home() {
   const [passwordVisible, setPasswordVisible] = useState(false)
-  const { result, login } = useLogin()
+  const { login } = useLogin()
   const navigate = useNavigate()
 
   const handleIconClick = () => {

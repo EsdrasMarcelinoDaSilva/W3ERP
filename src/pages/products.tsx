@@ -10,6 +10,7 @@ import { GetProductPage } from '@/services/getAllRequest'
 import { GetProductProps } from '@/types/GetProductProps'
 import { RiArrowLeftSLine, RiArrowRightSLine } from 'react-icons/ri'
 import { LuFilter } from 'react-icons/lu'
+import { removeAccents } from '@/utils/utils'
 
 const columns = ['ID', 'Produto', 'Status', 'Percentual']
 
@@ -21,7 +22,8 @@ export default function Products() {
   const [page, setPage] = useState(1)
   const [startPage, setStartPage] = useState(1)
   const [tableData, setTableData] = useState(products)
-  const [searchValue, setSearchValue] = useState('')
+  const [searchTerm, setSearchTerm] = useState('')
+  const [delay, setDelay] = useState('')
 
   useEffect(() => {
     async function fetchData() {
@@ -36,6 +38,38 @@ export default function Products() {
     setTableData(products)
   }, [products])
 
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setDelay(searchTerm)
+    }, 500)
+    return () => clearTimeout(timeoutId)
+  }, [searchTerm])
+
+  const filteredProducts = products.filter(product => {
+    if (selectedOption.length === 0 || selectedOption.includes('all')) {
+      return true
+    } else if (
+      selectedOption.includes('up') &&
+      product.classificacao === 'EM_ALTA'
+    ) {
+      return true
+    } else if (
+      selectedOption.includes('down') &&
+      product.classificacao === 'EM_BAIXA'
+    ) {
+      return true
+    } else {
+      return false
+    }
+  })
+
+  useEffect(() => {
+    const filteredProducts = products.filter(product => {
+      return product.nome.toLowerCase().includes(delay.toLowerCase())
+    })
+    setTableData(filteredProducts)
+  }, [delay])
+
   const handlePrevClick = () => {
     setPage(page => Math.max(page - 1, 1))
     if (page > 1 && page === startPage) {
@@ -49,27 +83,6 @@ export default function Products() {
     }
   }
 
-  const filteredProducts = products
-    .filter(product => {
-      if (selectedOption.length === 0 || selectedOption.includes('all')) {
-        return true
-      } else if (
-        selectedOption.includes('up') &&
-        product.classificacao === 'EM_ALTA'
-      ) {
-        return true
-      } else if (
-        selectedOption.includes('down') &&
-        product.classificacao === 'EM_BAIXA'
-      ) {
-        return true
-      } else {
-        return false
-      }
-    })
-    .filter(product =>
-      product.nome.toLowerCase().startsWith(searchValue.toLowerCase())
-    )
   const handleApplyFilter = () => {
     setTableData(filteredProducts)
     console.log(tableData)
@@ -84,7 +97,7 @@ export default function Products() {
         <C.FieldSearch>
           <SearchInput
             icon={<CiSearch size={20} />}
-            onChange={event => setSearchValue(event.target.value)}
+            onChange={event => setSearchTerm(event.target.value)}
           />
           <C.SpanFiltered onClick={() => setShowDiv(!showDiv)}>
             <LuFilter />

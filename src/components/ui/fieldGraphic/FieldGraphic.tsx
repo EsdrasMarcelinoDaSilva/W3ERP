@@ -11,7 +11,6 @@ import { GetDashBoardSummaryProps } from '@/types/GetDashBoardSummaryProps'
 import { GetClientDetailsProps } from '@/types/GetClientDetailsProps'
 import ProductDetails from '../productDetails/ProductDetails'
 import ClientDetails from '../clientDetails/ClientDetails'
-import { FiChevronDown } from 'react-icons/fi'
 import { BsCalendar3, BsTelephone } from 'react-icons/bs'
 import { AiOutlineMail } from 'react-icons/ai'
 import { FieldGraphicsProps } from '@/types/FieldGraphicsProps'
@@ -26,10 +25,10 @@ export default function FieldGraphic({
   email,
   className,
   showGraphic = true,
-  showIcons = true,
   showContactInfo = false,
   titleMarginTop,
-  height
+  height,
+  showFilter = true
 }: FieldGraphicsProps) {
   const [dashBoardData, setDashboardData] =
     useState<GetDashBoardSummaryProps | null>(null)
@@ -109,11 +108,18 @@ export default function FieldGraphic({
       <C.FieldGraphic className={className} style={{ height }}>
         <C.TitleFilter style={{ marginTop: titleMarginTop }}>
           <C.HeadingThree>{title}</C.HeadingThree>
-          {showIcons && (
-            <C.SpanFilter>
+          {showFilter && (
+            <C.FilterMonth>
               <BsCalendar3 />
-              &nbsp; Mostrar: <C.B> Esse mês</C.B> <FiChevronDown />
-            </C.SpanFilter>
+              <C.LabelFilter htmlFor="filter">&nbsp;Mostrar:</C.LabelFilter>
+              <C.Select className="filtro">
+                <C.Option value="this-month">Esse mês</C.Option>
+                <C.Option value="one-month">30 dias</C.Option>
+                <C.Option value="two-month">60 dias</C.Option>
+                <C.Option value="three-month">90 dias</C.Option>
+                <C.Option value="four-month">120 dias</C.Option>
+              </C.Select>
+            </C.FilterMonth>
           )}
         </C.TitleFilter>
         {showContactInfo && (

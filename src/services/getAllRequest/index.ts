@@ -7,8 +7,11 @@ import { GetProductClientProps } from '@/types/GetProductClientProps'
 import { GetClientDetailsProps } from '@/types/GetClientDetailsProps'
 import { GetClientProductProps } from '@/types/GetClientProductProps'
 import { GetPreditionCard } from '@/types/GetpredictionCard'
-import { ReactNode } from 'react'
 import { GetPredictionDataClientProps } from '@/types/GetPredictionDataClientProps'
+import { GetPredictionEndingProps } from '@/types/GetPredictionEndingProps'
+import { GetPreditionHistoricProps } from '@/types/GetPreditionHistoricProps'
+import { GetProductsResponse } from '@/types/GetProductsResponse'
+import { GetClientResponse } from '@/types/GetClientResponse'
 
 export const GetReport = async (
   dataInicio: string,
@@ -48,20 +51,6 @@ export const GetReport = async (
 
 //---------------------------------------------------------------
 
-export type Client = {
-  classificacao: 'EM_ALTA' | 'EM_BAIXA'
-  id: number
-  nome: string
-  percentual: number
-  quantidade: number
-  nextPurchase: ReactNode
-  lastPurchase: ReactNode
-}
-
-type GetClientResponse = {
-  content: Client[]
-}
-
 export const GetClients = async (): Promise<GetClientResponse> => {
   try {
     const token = localStorage.getItem('token')
@@ -91,20 +80,6 @@ export const GetClients = async (): Promise<GetClientResponse> => {
 
 //-------------------------------------------------------------
 
-export type Product = {
-  lastPurchase: ReactNode
-  nextPurchase: ReactNode
-  classificacao: 'EM_ALTA' | 'EM_BAIXA'
-  id: number
-  nome: string
-  percentual: number
-  quantidade: number
-}
-
-export type GetProductsResponse = {
-  content: Product[]
-}
-
 export const GetProducts = async (): Promise<GetProductsResponse> => {
   try {
     const token = localStorage.getItem('token')
@@ -114,7 +89,6 @@ export const GetProducts = async (): Promise<GetProductsResponse> => {
     }
     const result = await W3ApiPath.get('/app/produto', { headers })
     if (result.status === 200) {
-      console.log(result)
       return result.data
     }
   } catch (error) {
@@ -154,18 +128,6 @@ Promise<GetPreditionCard> => {
   throw new Error('Página em manutenção')
 }
 
-export type GetPredictionEndingProps = {
-  content: {
-    percentual: any
-    classificacao: any
-    id: number
-    nome: string
-    quantidade: number
-    ultimaCompra: string
-    proximaCompra: string
-  }[]
-}
-
 export const GetPreditionEnding = async (
   id: string
 ): Promise<GetPredictionEndingProps> => {
@@ -196,18 +158,6 @@ export const GetPreditionEnding = async (
     }
   }
   throw new Error('Página em manutenção')
-}
-
-export type GetPreditionHistoricProps = {
-  content: {
-    percentual: any
-    classificacao: any
-    id: number
-    nome: string
-    quantidade: number
-    ultimaCompra: string
-    proximaCompra?: string | null
-  }[]
 }
 
 export const GetPreditionHistoric = async (
@@ -273,12 +223,6 @@ export const GetPredictionDataClient = async (
     }
   }
   throw new Error('Página em manutenção')
-}
-
-export type GetPredicoesBaixaProps = {
-  email: string
-  nome: string
-  telefone: string
 }
 
 export const GetPreditionProductLow = async (id: string, produtoId: number) => {
@@ -363,7 +307,6 @@ export const GetProductDetails = async (
     })
     console.log(result.status)
     if (result.status === 200) {
-      console.log('kkkkkkkkkkk', result.data)
       return result.data
     }
   } catch (error) {

@@ -327,6 +327,30 @@ export const TitleFilter = styled.div`
   display: flex;
   justify-content: space-between;
 `
+export const FilterMonth = styled.div`
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  padding: 0.1em;
+  border-radius: 0.3em;
+`
+export const Select = styled.select`
+  border: none;
+  outline: none;
+  color: #001c98;
+  font-weight: bold;
+  font-size: 0.8em;
+  option:checked {
+    color: blue;
+  }
+  &:not(:focus) {
+    color: blue;
+  }
+`
+export const LabelFilter = styled.label`
+  font-size: 0.8em;
+`
+export const Option = styled.option``
 export const SpanContact = styled.span``
 export const SpanFilter = styled.span`
   background-color: #fff;
@@ -371,8 +395,7 @@ export const FieldPositive = styled.div`
   margin-top: 0.2em;
   gap: 0.5em;
 `
-
-//
+//-----------------End------------------------
 export const CircleGraphic = styled.div`
   position: relative;
   border-radius: 100%;

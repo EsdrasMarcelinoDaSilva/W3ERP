@@ -1,11 +1,7 @@
 import { GetProductDetailsProps } from '@/types/GetProductSummaryProps'
 import * as C from '../../../assets/styles/global-styles'
 import Graphic from '../graphic/Graphic'
-
-type ProductDetailsGraphicProps = {
-  productDetailsData: GetProductDetailsProps | null
-  backgroundColor: string
-}
+import { ProductDetailsGraphicProps } from '@/types/ProductDetailsGraphicProps'
 
 export default function ProductDetailsGraphic({
   productDetailsData,
