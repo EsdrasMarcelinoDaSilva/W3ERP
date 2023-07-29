@@ -1,4 +1,4 @@
-import { Client } from '@/services/getAllRequest'
+import { Client } from './GetClientResponse'
 
 type SetClassificationFn = (
   classification: 'EM_ALTA' | 'EM_BAIXA' | null
