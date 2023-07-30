@@ -253,6 +253,7 @@ export const GetPreditionProductLow = async (id: string, produtoId: number) => {
 //--------------------End-----------------------------------------
 
 export const GetProductPage = async (
+  query: string,
   page: number,
   classificacao?: 'EM_ALTA' | 'EM_BAIXA'
 ): Promise<GetProductProps> => {
@@ -265,6 +266,7 @@ export const GetProductPage = async (
     const result = await W3ApiPath.get('/app/produto', {
       headers,
       params: {
+        query,
         classificacao,
         page: page - 1,
         size: 7

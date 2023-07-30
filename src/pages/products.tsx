@@ -10,7 +10,6 @@ import { GetProductPage } from '@/services/getAllRequest'
 import { GetProductProps } from '@/types/GetProductProps'
 import { RiArrowLeftSLine, RiArrowRightSLine } from 'react-icons/ri'
 import { LuFilter } from 'react-icons/lu'
-import { removeAccents } from '@/utils/utils'
 
 const columns = ['ID', 'Produto', 'Status', 'Percentual']
 
@@ -27,12 +26,12 @@ export default function Products() {
 
   useEffect(() => {
     async function fetchData() {
-      const data = await GetProductPage(page)
+      const data = await GetProductPage(searchTerm, page)
       setProducts(data.content)
       setTotalPages(data.totalPages)
     }
     fetchData()
-  }, [page])
+  }, [page, searchTerm])
 
   useEffect(() => {
     setTableData(products)
