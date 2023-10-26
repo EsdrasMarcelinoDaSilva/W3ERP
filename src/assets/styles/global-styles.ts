@@ -566,11 +566,13 @@ export const FieldTableTitle = styled.div`
 export const TitleLeft = styled.div`
   display: flex;
   align-items: center;
+  cursor pointer;
 `
 
 export const TitleText = styled.h3`
   font-family: 'Sora', sans-serif;
   margin-left: 0.5em;
+  cursor pointer;
 `
 //-------------------------------------
 export const TitleRight = styled.div`
@@ -797,9 +799,11 @@ export const ButtonsPages = styled.button`
   background-color: transparent;
   border: none;
   margin-top: 0.5em;
+  cursor pointer;
 `
 export const FieldSpan = styled.span`
   font-family: 'Poppins', sans-serif;
+  cursor pointer;
 `
 export const SpanInformation = styled(FieldSpan)`
   margin-top: 0.5em;
